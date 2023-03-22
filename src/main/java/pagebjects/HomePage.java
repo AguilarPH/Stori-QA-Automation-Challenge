@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage{
-
     WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -15,7 +14,6 @@ public class HomePage{
     private WebElement suggessionBox(){
 //        WebElement byXpath = driver.findElement(By.xpath("//input[@class='inputs ui-autocomplete-input']"));
         WebElement byXpath = driver.findElement(By.xpath("//input[@placeholder='Type to Select Countries']"));
-        WebElement byID = driver.findElement(By.id("autocomplete"));
         return byXpath;
     }
 
@@ -57,7 +55,8 @@ public class HomePage{
     private WebElement switchTabBtn() {
         WebElement byXpath = driver.findElement(By.xpath(
                 "//legend[contains(text(), 'Switch Tab Example')]//following-sibling::a"));
-        return byXpath;
+        WebElement byCSS = driver.findElement(By.cssSelector("a#opentab"));
+        return byCSS;
     }
     public WebElement getSwitchTabBtn() {
         return switchTabBtn();
@@ -99,15 +98,48 @@ public class HomePage{
         return swToAlertCfrmBtn();
     }
 
-    private WebElement tableExample() {
+    private WebElement webTable() {
         WebElement byXpath = driver.findElement(By.xpath(
                 "//legend[contains(text(), 'Web Table Example')]" +
                         "//following-sibling::table//child::tbody"));
         return byXpath;
     }
 
-    public WebElement getTableExample() {
-        return tableExample();
+    public WebElement getWebTable() {
+        return webTable();
+    }
+
+    private WebElement fixedTable() {
+        WebElement byXpath = driver.findElement(By.xpath(
+                "//th[contains(text(), 'Position')]/parent::tr/parent::thead/ancestor::div[@class='tableFixHead']" +
+                        "//child::tbody"));
+//        table[@id='product']
+
+        return byXpath;
+    }
+
+    public WebElement getFixedTable() {
+        return fixedTable();
+    }
+
+    private WebElement iframe() {
+        WebElement byXpath = driver.findElement(By.xpath("//*[@id='courses-iframe']"));
+        return byXpath;
+    }
+
+    public WebElement getIframe() {
+        return iframe();
+    }
+    public class IframeElements {
+
+        private WebElement bulletList() {
+            WebElement byXpath = driver.findElement(By.xpath("//div[@class='row clearfix']"));
+            return byXpath;
+        }
+
+        public WebElement getBulletList() {
+            return bulletList();
+        }
     }
 
 }

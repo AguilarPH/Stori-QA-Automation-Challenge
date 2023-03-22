@@ -61,7 +61,18 @@ public class ElementSteps extends BaseSteps{
     }
 
     public void clickSwitchTabBtn() {
+        List<String> currentWindows = new ArrayList<>();
+        List<String> newWindows = new ArrayList<>();
+        int openWindows = driver.getWindowHandles().size();
+        currentWindows.addAll(driver.getWindowHandles());
+        System.out.println("Open windows: " + currentWindows.size());
+
         homePage.getSwitchTabBtn().click();
+        newWindows.addAll(driver.getWindowHandles());
+        newWindows.removeAll(currentWindows);
+//        driver.switchTo().newWindow(WindowType.TAB);
+        driver.switchTo().window(newWindows.get(0));
+        System.out.println(driver.getTitle());
     }
 
     public void sendKeysSwToAlertText(String name) {
@@ -87,11 +98,10 @@ public class ElementSteps extends BaseSteps{
         return cfrmAlertMsg;
     }
 
-    public List<List<WebElement>> getTableExampleChilds() {
+    public List<List<WebElement>> getWebTableChilds() {
         List<List<WebElement>> courses = new ArrayList<>();
-        List<WebElement> children = homePage.getTableExample().findElements(By.xpath("./child::tr"));
-
-        System.out.println(children.size());
+        List<WebElement> children = homePage.getWebTable().findElements(By.xpath("./child::tr"));
+//        System.out.println("WebTable Rows: " + children.size());
 
         children.forEach(course -> {
             List<WebElement> fields = course.findElements(By.xpath("./child::td"));
@@ -99,6 +109,29 @@ public class ElementSteps extends BaseSteps{
         });
 
         return courses;
+    }
+
+    public List<List<WebElement>> getFixedTableChildren() {
+        List<List<WebElement>> employees = new ArrayList<>();
+        List<WebElement> records = homePage.getFixedTable().findElements(By.xpath("./child::tr"));
+
+        System.out.println("FixedHeader Table Rows: " + records.size());
+        System.out.println(records.get(0).getText());
+
+        records.forEach(record -> {
+            List<WebElement> fields = record.findElements(By.xpath("./child::td"));
+            employees.add(fields);
+        });
+
+        return employees;
+    }
+
+    public List<WebElement> getIframeBulletList(){
+        HomePage.IframeElements iframeElements = homePage.new IframeElements();
+        List<WebElement> bullets = new ArrayList<>();
+        bullets.addAll(iframeElements.getBulletList().findElements(By.xpath("//child::ul[@class='list-style-two']/child::li")));
+
+        return bullets;
     }
 
 }

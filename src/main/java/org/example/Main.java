@@ -11,6 +11,7 @@ public class Main {
 
 
         homeTests.controlTest();
+//        homeTests.switchTabTest();
 
         baseSteps.tearDown();
     }
