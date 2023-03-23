@@ -14,11 +14,11 @@ import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
 public class BaseSteps {
-    WebDriver driver;
+    private WebDriver driver;
 
-    Actions customActions;
+    protected Actions customActions;
 
-    JavascriptExecutor js;
+    protected JavascriptExecutor js;
 
     public BaseSteps(String browser) {
         setDriver(browser);
@@ -58,7 +58,7 @@ public class BaseSteps {
 //        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
 //        wait.until(ExpectedConditions.visibilityOf(webElement));
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
+        Wait<WebDriver> wait = new FluentWait<>(getDriver())
         .withTimeout(Duration.ofSeconds(seconds)).
                 pollingEvery(Duration.ofMillis(200)).
                 ignoring(NoSuchElementException.class);

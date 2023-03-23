@@ -10,7 +10,7 @@ public class NavigationSteps extends BaseSteps{
 
     public NavigationSteps(WebDriver driver) {
         this.driver = driver;
-        js = (JavascriptExecutor) driver;
+        js = (JavascriptExecutor) this.driver;
     }
 
     public void navigateToURL(String url) {
