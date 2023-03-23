@@ -1,9 +1,10 @@
 package tests;
 
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.RaulShettyHome;
 import steps.ElementSteps;
@@ -72,6 +73,8 @@ public class HomeTests{
                 " does not match with expected URL: " + url);
     }
 
+    @Test(description = "Send 'Me' to Suggession Class textbox, from the displayed autocomplete list, select 'Mexico'",
+            groups = "homePageTests")
     public void suggestionBoxTest() {
         elementSteps.clickuggessionBox();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -79,6 +82,8 @@ public class HomeTests{
         elementSteps.selectSuggessionBoxAutocomplete(countries, "Mexico");
     }
 
+    @Test(description = "Click on Dropdown element to display its options, select 'Option2', wait 5 seconds and select 'Option 3'",
+        groups = "homePageTests")
     public void dropDownTest() {
         List<WebElement> dropdownOpts = elementSteps.clickDropDown();
         dropdownOpts.get(2).click();
@@ -86,6 +91,9 @@ public class HomeTests{
         dropdownOpts.get(3).click();
     }
 
+    @Test(description = "Click the Switch Window button, switch focus to the new window and look for " +
+            "'30 day money back guarantee' text, close window and get focus back to Home Page",
+            groups = "switchWindowTests", enabled = false)
     public void switchWindowTest() {
         String originTab = navigationSteps.getTabHandle();
 
@@ -97,6 +105,9 @@ public class HomeTests{
         navigationSteps.switchToTab(originTab);
     }
 
+    @Test(description = "Click Switch Tab button, switch focus to new tab and scroll until the " +
+            "View All Courses button, take screenshot, get focus back to original tab",
+            groups = "switchWindowTests", enabled = false)
     public void switchTabTest() {
         String originTab = navigationSteps.getTabHandle();
         elementSteps.clickSwitchTabBtn();
@@ -110,23 +121,31 @@ public class HomeTests{
         navigationSteps.switchToTab(originTab);
     }
 
+    @Test(description = "Enter message to Switch To Alert textbox, click Alert button, " +
+            "print the alert text and click its Ok button",
+            groups = "alertsTests")
     public void switchToAlertTest() {
         elementSteps.sendKeysSwToAlertText("Stori Card");
         String alertMsg =  elementSteps.clickSwToAlertBtn();
         System.out.printf("\nAlert message: %s\n", alertMsg);
     }
 
+    @Test(description = "Enter message to Switch To Alert textbox, click Confirm button, " +
+            "print the alert text and verify it against expected text print the alert text, click its Ok button",
+            groups = "alertsTests")
     public void switchToAlertAndConfirmTest() {
-        elementSteps.sendKeysSwToAlertText("Stori Card");
-        String cfrmAlertMsg = elementSteps.clickSwToAlertCfrmBtn();
-        System.out.printf("\nAlert message: %s\n", cfrmAlertMsg);
+            elementSteps.sendKeysSwToAlertText("Stori Card");
+            String cfrmAlertMsg = elementSteps.clickSwToAlertCfrmBtn();
+            System.out.printf("\nAlert message: %s\n", cfrmAlertMsg);
 
-        Assert.isTrue(cfrmAlertMsg.equals("Hello Stori Card, Are you sure you want to confirm?"),
-                "Alert text: " + cfrmAlertMsg + " does not match with expected text: " +
-                        "'Hello Stori Card, Are you sure you want to confirm?'");
+            Assert.isTrue(cfrmAlertMsg.equals("Hello Stori Card, Are you sure you want to confirm?"),
+                    "Alert text: " + cfrmAlertMsg + " does not match with expected text: " +
+                            "'Hello Stori Card, Are you sure you want to confirm?'");
+        }
 
-    }
-
+    @Test(description = "Check the Web Table rows, print the quantity of rows with price of 25," +
+            "print the name of courses with this price",
+        groups = "tableTests")
     public void webTableTest() {
         List<List<WebElement>> courses = elementSteps.getWebTableChilds();
         courses.remove(0);
@@ -136,6 +155,8 @@ public class HomeTests{
         courses25.forEach(course -> System.out.printf("- %s\n", course.getText()));
     }
 
+    @Test(description = "Check the Web Table Fixed Header rows, print the name value of every Engineer found",
+            groups = "tableTests")
     public void webTableFixedHeaderTests() {
         List<List<WebElement>> employees = elementSteps.getFixedTableChildren();
         List<WebElement> engineers = new ArrayList<>();
@@ -145,6 +166,10 @@ public class HomeTests{
         engineers.forEach(engineer -> System.out.println(engineer.getText()));
     }
 
+    @Test(description = "Scroll until iFrame Example is displayed in screen, switch focus to iFrame and look for " +
+            "'His mentorship is most after in the software testing community with long waiting period.' text in the" +
+            "bullet list and print it",
+        groups = "switchFrameTest")
     public void iFrameTest(){
         String blueText =
                 "His mentorship program is most after in the software testing community with long waiting period.";
