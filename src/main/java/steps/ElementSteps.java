@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import pagebjects.HomePage;
+import pageObjects.HomePage;
+import pageObjects.RaulShettyHome;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -15,9 +16,14 @@ public class ElementSteps extends BaseSteps{
     WebDriver driver;
     HomePage homePage;
 
+    RaulShettyHome raulShettyHome;
+
     public ElementSteps(WebDriver driver) {
+
         this.driver = driver;
-        homePage = PageFactory.initElements(driver, HomePage.class);
+        homePage = new HomePage(this.driver);
+//        homePage = PageFactory.initElements(getDriver(), HomePage.class);
+        raulShettyHome = PageFactory.initElements(getDriver(), RaulShettyHome.class);
     }
 
     public void clickuggessionBox() {
@@ -65,14 +71,17 @@ public class ElementSteps extends BaseSteps{
         List<String> newWindows = new ArrayList<>();
         int openWindows = driver.getWindowHandles().size();
         currentWindows.addAll(driver.getWindowHandles());
-        System.out.println("Open windows: " + currentWindows.size());
+
+        System.out.println(raulShettyHome.getCoursesSection().getLocation());
+
 
         homePage.getSwitchTabBtn().click();
         newWindows.addAll(driver.getWindowHandles());
         newWindows.removeAll(currentWindows);
 //        driver.switchTo().newWindow(WindowType.TAB);
         driver.switchTo().window(newWindows.get(0));
-        System.out.println(driver.getTitle());
+
+//        System.out.println(driver.getTitle());
     }
 
     public void sendKeysSwToAlertText(String name) {
@@ -101,7 +110,6 @@ public class ElementSteps extends BaseSteps{
     public List<List<WebElement>> getWebTableChilds() {
         List<List<WebElement>> courses = new ArrayList<>();
         List<WebElement> children = homePage.getWebTable().findElements(By.xpath("./child::tr"));
-//        System.out.println("WebTable Rows: " + children.size());
 
         children.forEach(course -> {
             List<WebElement> fields = course.findElements(By.xpath("./child::td"));
@@ -114,9 +122,6 @@ public class ElementSteps extends BaseSteps{
     public List<List<WebElement>> getFixedTableChildren() {
         List<List<WebElement>> employees = new ArrayList<>();
         List<WebElement> records = homePage.getFixedTable().findElements(By.xpath("./child::tr"));
-
-        System.out.println("FixedHeader Table Rows: " + records.size());
-        System.out.println(records.get(0).getText());
 
         records.forEach(record -> {
             List<WebElement> fields = record.findElements(By.xpath("./child::td"));
