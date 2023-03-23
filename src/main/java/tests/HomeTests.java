@@ -46,7 +46,7 @@ public class HomeTests extends BaseTest{
 //        switchWindowTest();
 
 //  Step5:
-//        switchTabTest();
+        switchTabTest();
 
 //  Step 6:
         switchToAlertTest();
@@ -87,8 +87,11 @@ public class HomeTests extends BaseTest{
         String originTab = navigationSteps.getTabHandle();
         elementSteps.clickSwitchTabBtn();
 
-        System.out.println(raulShettyHome.getJoinNowBtn().getText());
+        navigationSteps.scrollToBottom();
+        System.out.printf("\n%s\n", raulShettyHome.getJoinNowBtn().getText());
 //        navigationSteps.scrollToElement(raulShettyHome.getViewAllBtn());
+
+        navigationSteps.switchToTab(originTab);
     }
 
     public void switchToAlertTest() {

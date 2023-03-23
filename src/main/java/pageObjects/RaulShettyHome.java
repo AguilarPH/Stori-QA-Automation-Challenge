@@ -33,8 +33,8 @@ public class RaulShettyHome{
 
     private WebElement viewAllBtn(){
         WebElement byXpath = driver.findElement(By.xpath("//a[@class='btn btn-primary view-all-courses-btn']"));
-//        WebElement byCSS = driver.findElement(By.cssSelector("a.btn btn-primary view-all-courses-btn"));
-        return byXpath;
+        WebElement byCSS = driver.findElement(By.cssSelector("a.'btn btn-primary view-all-courses-btn'"));
+        return byCSS;
     }
     public WebElement getViewAllBtn(){
         return viewAllBtn();

@@ -72,16 +72,11 @@ public class ElementSteps extends BaseSteps{
         int openWindows = driver.getWindowHandles().size();
         currentWindows.addAll(driver.getWindowHandles());
 
-        System.out.println(raulShettyHome.getCoursesSection().getLocation());
-
-
         homePage.getSwitchTabBtn().click();
         newWindows.addAll(driver.getWindowHandles());
         newWindows.removeAll(currentWindows);
-//        driver.switchTo().newWindow(WindowType.TAB);
         driver.switchTo().window(newWindows.get(0));
 
-//        System.out.println(driver.getTitle());
     }
 
     public void sendKeysSwToAlertText(String name) {

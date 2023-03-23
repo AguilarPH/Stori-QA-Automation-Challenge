@@ -12,8 +12,7 @@ public class HomePage{
     }
 
     private WebElement suggessionBox(){
-//        WebElement byXpath = driver.findElement(By.xpath("//input[@class='inputs ui-autocomplete-input']"));
-        WebElement byXpath = driver.findElement(By.xpath("//input[@placeholder='Type to Select Countries']"));
+        WebElement byXpath = driver.findElement(By.xpath("//input[@id='autocomplete']"));
         return byXpath;
     }
 
@@ -33,8 +32,8 @@ public class HomePage{
     private WebElement dropdown(){
         WebElement byXpathName = driver.findElement(By.xpath(
                 "//select[@name='dropdown-class-example']"));
-//        WebElement byXpath = driver.findElement(By.xpath(
-//        "//legend[contains(text(), 'Checkbox Example')]//following-sibling::select"));
+        WebElement byXpath = driver.findElement(By.xpath(
+        "//html/body/div[1]/div[3]/fieldset/select"));
         return byXpathName;
     }
 
@@ -66,8 +65,8 @@ public class HomePage{
         WebElement byXpath = driver.findElement(By.xpath(
                 "//legend[contains(text(), 'Switch To Alert Example')]" +
                         "//following-sibling::input[@type='text']"));
-        WebElement byCSS = driver.findElement(By.cssSelector("input#name"));
-        return byXpath;
+        WebElement byCSS = driver.findElement(By.cssSelector("input.inputs[name=enter-name]"));
+        return byCSS;
     }
 
     public WebElement getSwToAlertText() {
@@ -79,7 +78,7 @@ public class HomePage{
                 "//legend[contains(text(), 'Switch To Alert Example')]" +
                         "//following-sibling::input[2]"));
         WebElement byCSS = driver.findElement(By.cssSelector("input#alertbtn"));
-        return byXpath;
+        return byCSS;
     }
 
     public WebElement getSwToAlertBtn() {
@@ -102,7 +101,8 @@ public class HomePage{
         WebElement byXpath = driver.findElement(By.xpath(
                 "//legend[contains(text(), 'Web Table Example')]" +
                         "//following-sibling::table//child::tbody"));
-        return byXpath;
+        WebElement byCSS = driver.findElement(By.cssSelector("table[name='courses']>tbody"));
+        return byCSS;
     }
 
     public WebElement getWebTable() {
@@ -113,9 +113,8 @@ public class HomePage{
         WebElement byXpath = driver.findElement(By.xpath(
                 "//th[contains(text(), 'Position')]/parent::tr/parent::thead/ancestor::div[@class='tableFixHead']" +
                         "//child::tbody"));
-//        table[@id='product']
-
-        return byXpath;
+        WebElement byCSS = driver.findElement(By.cssSelector("div[class='tableFixHead']>table[id='product']>tbody"));
+        return byCSS;
     }
 
     public WebElement getFixedTable() {
