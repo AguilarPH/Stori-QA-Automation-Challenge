@@ -3,6 +3,7 @@ package steps;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 
 public class NavigationSteps extends BaseSteps{
 
@@ -12,7 +13,7 @@ public class NavigationSteps extends BaseSteps{
         this.driver = driver;
         js = (JavascriptExecutor) driver;
     }
-
+@BeforeTest
     public void navigateToURL(String url) {
         driver.get(url);
         driver.manage().window().maximize();

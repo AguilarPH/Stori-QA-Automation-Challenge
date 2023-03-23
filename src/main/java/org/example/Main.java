@@ -11,9 +11,9 @@ public class Main {
         HomeTests homeTests = new HomeTests(baseSteps.getDriver());
 
 
-        homeTests.controlTest();
+//        homeTests.controlTest();
 //        homeTests.switchTabTest();
 
-        baseSteps.tearDown();
+//        baseSteps.tearDown();
     }
 }
