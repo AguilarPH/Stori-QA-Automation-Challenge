@@ -115,9 +115,6 @@ public class ElementSteps extends BaseSteps{
         List<List<WebElement>> employees = new ArrayList<>();
         List<WebElement> records = homePage.getFixedTable().findElements(By.xpath("./child::tr"));
 
-        System.out.println("FixedHeader Table Rows: " + records.size());
-        System.out.println(records.get(0).getText());
-
         records.forEach(record -> {
             List<WebElement> fields = record.findElements(By.xpath("./child::td"));
             employees.add(fields);
