@@ -23,8 +23,8 @@ public class RaulShettyHome{
 
     private WebElement coursesSection() {
         WebElement byClass = driver.findElement(By.className("courses-section"));
-
-        return byClass;
+        WebElement byCSS = driver.findElement(By.cssSelector("section.courses-section"));
+        return byCSS;
     }
 
     public WebElement getCoursesSection() {
@@ -33,8 +33,8 @@ public class RaulShettyHome{
 
     private WebElement viewAllBtn(){
         WebElement byXpath = driver.findElement(By.xpath("//a[@class='btn btn-primary view-all-courses-btn']"));
-        WebElement byCSS = driver.findElement(By.cssSelector("a.'btn btn-primary view-all-courses-btn'"));
-        return byCSS;
+//        WebElement byCSS = driver.findElement(By.cssSelector("a.'btn btn-primary view-all-courses-btn'"));
+        return byXpath;
     }
     public WebElement getViewAllBtn(){
         return viewAllBtn();

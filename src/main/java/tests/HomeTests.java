@@ -43,7 +43,7 @@ public class HomeTests{
         dropDownTest();
 
 //  Step 4:
-//        switchWindowTest();
+        switchWindowTest();
 
 //  Step5:
         switchTabTest();
@@ -60,7 +60,7 @@ public class HomeTests{
         webTableFixedHeaderTests();
 
 //  Step 9:
-//        iFrameTest();
+        iFrameTest();
 
     }
 
@@ -78,19 +78,26 @@ public class HomeTests{
         dropdownOpts.get(3).click();
     }
 
-    public void switchWindowTest(){
+    public void switchWindowTest() {
         String originTab = navigationSteps.getTabHandle();
+
+        elementSteps.clickSwitchWindowBtn();
         driver.manage().window().maximize();
+
+        navigationSteps.closeTab();
+
+        navigationSteps.switchToTab(originTab);
     }
 
     public void switchTabTest() {
         String originTab = navigationSteps.getTabHandle();
         elementSteps.clickSwitchTabBtn();
 
-        navigationSteps.scrollToBottom();
-
-        navigationSteps.scrollToBottom();
 //        navigationSteps.scrollToElement(raulShettyHome.getViewAllBtn());
+//  Courses section height = 1931
+//  View All Courses button height = 2089
+        navigationSteps.scrollToHeight(1931+2089);
+
 
         navigationSteps.switchToTab(originTab);
     }
@@ -139,8 +146,11 @@ public class HomeTests{
         List<WebElement> bulletList = elementSteps.getIframeBulletList();
 
         bulletList.forEach
-                (bullet -> {if(bullet.getText().equals(blueText)) System.out.printf("\n%s\n", bullet.getText());});
+                (bullet -> {if(bullet.getText().equals(blueText))
+                    System.out.printf("\n%s\n", bullet.getText());
+                    navigationSteps.scrollToElement(bullet);});
 
+        driver.switchTo().defaultContent();
     }
 
 }

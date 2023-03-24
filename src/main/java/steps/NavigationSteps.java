@@ -30,6 +30,11 @@ public class NavigationSteps extends BaseSteps{
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
+    public void scrollToHeight(int pixels) {
+        String jsScript = "window.scrollBy(0," + pixels + ")";
+        js.executeScript(jsScript);
+    }
+
     public void scrollToBottom(){
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }

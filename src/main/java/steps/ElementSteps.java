@@ -62,14 +62,22 @@ public class ElementSteps{
     }
 
     public void clickSwitchWindowBtn() {
+        List<String> currentWindows = new ArrayList<>();
+        List<String> newWindows = new ArrayList<>();
+
+        currentWindows.addAll(driver.getWindowHandles());
+
         homePage.getswitchWindowBtn().click();
+        newWindows.addAll(driver.getWindowHandles());
+        newWindows.removeAll(currentWindows);
+        driver.switchTo().window(newWindows.get(0));
 
     }
 
     public void clickSwitchTabBtn() {
         List<String> currentWindows = new ArrayList<>();
         List<String> newWindows = new ArrayList<>();
-        int openWindows = driver.getWindowHandles().size();
+//        int openWindows = driver.getWindowHandles().size();
         currentWindows.addAll(driver.getWindowHandles());
 
         homePage.getSwitchTabBtn().click();
