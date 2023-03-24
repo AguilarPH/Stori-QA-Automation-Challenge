@@ -21,7 +21,6 @@ public class HomeTests{
     ElementSteps elementSteps;
     HomePage homePage;
     RaulShettyHome raulShettyHome;
-
     public HomeTests(WebDriver driver) {
         this.driver = driver;
         elementSteps = new ElementSteps(driver);
@@ -65,7 +64,8 @@ public class HomeTests{
 
     }
 
-    @Test
+    @Test(description = "Navigate to url and verify browser get the correct website",
+            groups = "homePageTests", alwaysRun = true)
     private void navigateToUrlTest() {
         String url = "https://rahulshettyacademy.com/AutomationPractice/";
         navigationSteps.navigateToURL(url);
@@ -172,7 +172,7 @@ public class HomeTests{
     @Test(description = "Scroll until iFrame Example is displayed in screen, switch focus to iFrame and look for " +
             "'His mentorship is most after in the software testing community with long waiting period.' text in the" +
             "bullet list and print it",
-        groups = "switchFrameTest")
+        groups = "FrameTest")
     public void iFrameTest(){
         String blueText =
                 "His mentorship program is most after in the software testing community with long waiting period.";

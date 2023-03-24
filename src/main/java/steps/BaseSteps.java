@@ -4,12 +4,10 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,23 +16,13 @@ import java.time.Duration;
 public class BaseSteps {
     private WebDriver driver;
 
-    protected Actions customActions;
-
-    protected JavascriptExecutor js;
-
-    public BaseSteps(String browser) {
-        setDriver(browser);
-        customActions = new Actions(this.driver);
-        js = (JavascriptExecutor) this.driver;
-    }
-    public BaseSteps(){}
-
     public WebDriver getDriver() {
         return this.driver;
 
     }
-@BeforeSuite
-    private void setDriver(String browserName) {
+    @Parameters("webDriver")
+@BeforeTest
+    public void setDriver(String browserName) {
         switch (browserName) {
             case "chrome":
                 System.setProperty("webdriver.http.factory", "jdk-http-client");
@@ -75,7 +63,7 @@ public class BaseSteps {
         }
     }
 
-@AfterSuite
+@AfterTest
     public void tearDown() {
         driver.close();
         driver.quit();
