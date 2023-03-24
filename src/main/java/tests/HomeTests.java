@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeTests extends BaseTest{
+public class HomeTests{
 
     WebDriver driver;
     NavigationSteps navigationSteps;
@@ -88,7 +88,8 @@ public class HomeTests extends BaseTest{
         elementSteps.clickSwitchTabBtn();
 
         navigationSteps.scrollToBottom();
-        System.out.printf("\n%s\n", raulShettyHome.getJoinNowBtn().getText());
+
+        navigationSteps.scrollToBottom();
 //        navigationSteps.scrollToElement(raulShettyHome.getViewAllBtn());
 
         navigationSteps.switchToTab(originTab);

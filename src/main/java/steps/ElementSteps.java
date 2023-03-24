@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElementSteps extends BaseSteps{
+public class ElementSteps{
 
     WebDriver driver;
     HomePage homePage;
@@ -23,7 +23,7 @@ public class ElementSteps extends BaseSteps{
         this.driver = driver;
         homePage = new HomePage(this.driver);
 //        homePage = PageFactory.initElements(getDriver(), HomePage.class);
-        raulShettyHome = PageFactory.initElements(getDriver(), RaulShettyHome.class);
+        raulShettyHome = PageFactory.initElements(this.driver, RaulShettyHome.class);
     }
 
     public void clickuggessionBox() {

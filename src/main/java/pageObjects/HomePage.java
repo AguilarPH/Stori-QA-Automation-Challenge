@@ -30,11 +30,9 @@ public class HomePage{
     }
 
     private WebElement dropdown(){
-        WebElement byXpathName = driver.findElement(By.xpath(
-                "//select[@name='dropdown-class-example']"));
-        WebElement byXpath = driver.findElement(By.xpath(
-        "//html/body/div[1]/div[3]/fieldset/select"));
-        return byXpathName;
+        WebElement byXpathName = driver.findElement(By.xpath("//select[@name='dropdown-class-example']"));
+        WebElement byXpath = driver.findElement(By.xpath("//html/body/div[1]/div[3]/fieldset/select"));
+        return byXpath;
     }
 
     public WebElement getDropdown(){
@@ -54,7 +52,8 @@ public class HomePage{
     private WebElement switchTabBtn() {
         WebElement byXpath = driver.findElement(By.xpath(
                 "//legend[contains(text(), 'Switch Tab Example')]//following-sibling::a"));
-        WebElement byCSS = driver.findElement(By.cssSelector("a#opentab"));
+        WebElement byCSS = driver.findElement(By.cssSelector("legend.switch-tab + a"));
+//        WebElement byCSS = driver.findElement(By.cssSelector("legend[text*='Switch Tab Example']+a"));
         return byCSS;
     }
     public WebElement getSwitchTabBtn() {

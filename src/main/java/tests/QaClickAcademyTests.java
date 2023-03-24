@@ -2,11 +2,11 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 
-public class QaClickAcademyTests extends BaseTest {
+public class QaClickAcademyTests{
 
-    WebDriver driver;
+    private WebDriver driver;
 
-    QaClickAcademyTests() {
-        this.driver = getDriver();
+    QaClickAcademyTests(WebDriver driver) {
+        this.driver = driver;
     }
 }

@@ -1,13 +1,12 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import steps.BaseSteps;
 
-public class BaseTest extends BaseSteps{
-    public WebDriver driver;
+public class BaseTest{
+    private WebDriver driver;
 
-    public BaseTest(){
-        this.driver = getDriver();
+    public BaseTest(WebDriver driver){
+        this.driver = driver;
     }
 
 }

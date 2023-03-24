@@ -1,9 +1,7 @@
 package steps;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -11,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 public class BaseSteps {
@@ -25,8 +25,7 @@ public class BaseSteps {
         customActions = new Actions(this.driver);
         js = (JavascriptExecutor) this.driver;
     }
-
-    public BaseSteps() {}
+    public BaseSteps(){}
 
     public WebDriver getDriver() {
         return this.driver;
@@ -63,6 +62,15 @@ public class BaseSteps {
                 pollingEvery(Duration.ofMillis(200)).
                 ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public void takeScreenshot() {
+        File scrSht = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(scrSht, new File("./scrshots.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void tearDown() {
