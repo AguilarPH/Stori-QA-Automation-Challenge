@@ -65,11 +65,12 @@ public class HomeTests{
 
     }
 
+    @Test
     private void navigateToUrlTest() {
         String url = "https://rahulshettyacademy.com/AutomationPractice/";
         navigationSteps.navigateToURL(url);
 
-        Assert.isTrue(driver.getCurrentUrl().equals(url), "Current URL " + driver.getCurrentUrl() +
+        Assert.assertTrue(driver.getCurrentUrl().equals(url), "Current URL " + driver.getCurrentUrl() +
                 " does not match with expected URL: " + url);
     }
 
@@ -139,7 +140,7 @@ public class HomeTests{
         String cfrmAlertMsg = elementSteps.clickSwToAlertCfrmBtn();
         System.out.printf("\nAlert message: %s\n", cfrmAlertMsg);
 
-        Assert.isTrue(cfrmAlertMsg.equals("Hello Stori Card, Are you sure you want to confirm?"),
+        Assert.assertTrue(cfrmAlertMsg.equals("Hello Stori Card, Are you sure you want to confirm?"),
                 "Alert text: " + cfrmAlertMsg + " does not match with expected text: " +
                         "'Hello Stori Card, Are you sure you want to confirm?'");
 
