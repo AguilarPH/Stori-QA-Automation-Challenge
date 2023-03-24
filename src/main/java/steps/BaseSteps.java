@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +33,7 @@ public class BaseSteps {
         return this.driver;
 
     }
-
+@BeforeSuite
     private void setDriver(String browserName) {
         switch (browserName) {
             case "chrome":
@@ -73,6 +75,7 @@ public class BaseSteps {
         }
     }
 
+@AfterSuite
     public void tearDown() {
         driver.close();
         driver.quit();

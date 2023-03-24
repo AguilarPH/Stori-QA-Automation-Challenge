@@ -113,6 +113,7 @@ public class HomeTests{
         elementSteps.clickSwitchTabBtn();
 
 //        navigationSteps.scrollToElement(raulShettyHome.getViewAllBtn());
+
 //  Courses section height = 1931
 //  View All Courses button height = 2089
         navigationSteps.scrollToHeight(1931+2089);
