@@ -134,14 +134,15 @@ public class HomeTests{
             "print the alert text and verify it against expected text print the alert text, click its Ok button",
             groups = "alertsTests")
     public void switchToAlertAndConfirmTest() {
-            elementSteps.sendKeysSwToAlertText("Stori Card");
-            String cfrmAlertMsg = elementSteps.clickSwToAlertCfrmBtn();
-            System.out.printf("\nAlert message: %s\n", cfrmAlertMsg);
+        elementSteps.sendKeysSwToAlertText("Stori Card");
+        String cfrmAlertMsg = elementSteps.clickSwToAlertCfrmBtn();
+        System.out.printf("\nAlert message: %s\n", cfrmAlertMsg);
 
-            Assert.isTrue(cfrmAlertMsg.equals("Hello Stori Card, Are you sure you want to confirm?"),
-                    "Alert text: " + cfrmAlertMsg + " does not match with expected text: " +
-                            "'Hello Stori Card, Are you sure you want to confirm?'");
-        }
+        Assert.isTrue(cfrmAlertMsg.equals("Hello Stori Card, Are you sure you want to confirm?"),
+                "Alert text: " + cfrmAlertMsg + " does not match with expected text: " +
+                        "'Hello Stori Card, Are you sure you want to confirm?'");
+
+    }
 
     @Test(description = "Check the Web Table rows, print the quantity of rows with price of 25," +
             "print the name of courses with this price",
