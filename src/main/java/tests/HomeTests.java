@@ -34,7 +34,7 @@ public class HomeTests{
     public void controlTest() {
 
 //  Step 1:
-        navigationSteps.navigateToURL("https://rahulshettyacademy.com/AutomationPractice/");
+        navigateToUrlTest();
 
 //  Step 2:
         suggestionBoxTest();
@@ -62,6 +62,14 @@ public class HomeTests{
 //  Step 9:
         iFrameTest();
 
+    }
+
+    private void navigateToUrlTest() {
+        String url = "https://rahulshettyacademy.com/AutomationPractice/";
+        navigationSteps.navigateToURL(url);
+
+        Assert.isTrue(driver.getCurrentUrl().equals(url), "Current URL " + driver.getCurrentUrl() +
+                " does not match with expected URL: " + url);
     }
 
     public void suggestionBoxTest() {
