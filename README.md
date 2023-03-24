@@ -13,3 +13,4 @@ https://rahulshettyacademy.com/AutomationPractice/
 - Chrome driver
 - Maven
 - Page Object Model as Design Pattern
+- TestNG
