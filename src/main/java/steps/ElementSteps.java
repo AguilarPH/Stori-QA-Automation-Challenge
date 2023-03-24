@@ -26,7 +26,7 @@ public class ElementSteps{
         raulShettyHome = PageFactory.initElements(this.driver, RaulShettyHome.class);
     }
 
-    public void clickuggessionBox() {
+    public void clickSuggessionBox() {
         homePage.getSuggesionBox().click();
 
     }

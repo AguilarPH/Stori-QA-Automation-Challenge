@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.RaulShettyHome;
+import steps.BaseSteps;
 import steps.ElementSteps;
 import steps.NavigationSteps;
 
@@ -21,10 +22,10 @@ public class HomeTests{
     ElementSteps elementSteps;
     HomePage homePage;
     RaulShettyHome raulShettyHome;
-    public HomeTests(WebDriver driver) {
-        this.driver = driver;
+    public HomeTests() {
+        this.driver = BaseSteps.getInstance().getDriver();
         elementSteps = new ElementSteps(driver);
-        navigationSteps = new NavigationSteps(driver);
+        navigationSteps = new NavigationSteps();
         homePage = PageFactory.initElements(driver, HomePage.class);
         raulShettyHome = PageFactory.initElements(driver, RaulShettyHome.class);
 
@@ -77,7 +78,7 @@ public class HomeTests{
     @Test(description = "Send 'Me' to Suggession Class textbox, from the displayed autocomplete list, select 'Mexico'",
             groups = "homePageTests")
     public void suggestionBoxTest() {
-        elementSteps.clickuggessionBox();
+        elementSteps.clickSuggessionBox();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         List<WebElement> countries = elementSteps.sendKeysSuggessionBox("Me");
         elementSteps.selectSuggessionBoxAutocomplete(countries, "Mexico");

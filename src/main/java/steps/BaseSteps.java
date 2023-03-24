@@ -16,6 +16,22 @@ import java.time.Duration;
 public class BaseSteps {
     private WebDriver driver;
 
+    private static BaseSteps instance;
+
+    private BaseSteps(){}
+
+    static {
+        try {
+            instance = new BaseSteps();
+        } catch (Exception e){
+            throw new RuntimeException("Exception occurred in creating BaseSteps instance");
+        }
+    }
+
+    public static BaseSteps getInstance() {
+        return instance;
+    }
+
     public WebDriver getDriver() {
         return this.driver;
 

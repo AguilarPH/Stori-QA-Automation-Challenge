@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeGroups;
 
-public class NavigationSteps extends BaseSteps{
+public class NavigationSteps{
 
     private WebDriver driver;
 
     private JavascriptExecutor js;
 
-    public NavigationSteps(WebDriver driver) {
-        this.driver = driver;
+    public NavigationSteps() {
+        this.driver = BaseSteps.getInstance().getDriver();
         js = (JavascriptExecutor) this.driver;
     }
 @BeforeGroups

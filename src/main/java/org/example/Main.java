@@ -5,13 +5,12 @@ import tests.HomeTests;
 
 public class Main {
     public static void main(String[] args) {
-        BaseSteps baseSteps = new BaseSteps();
-        baseSteps.setDriver("chrome");
-        HomeTests homeTests = new HomeTests(baseSteps.getDriver());
+        BaseSteps.getInstance().setDriver("chrome");
+        HomeTests homeTests = new HomeTests();
 
 
         homeTests.controlTest();
 
-        baseSteps.tearDown();
+        BaseSteps.getInstance().tearDown();
     }
 }
